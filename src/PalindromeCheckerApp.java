@@ -3,52 +3,55 @@
  * MAIN CLASS - PalindromeCheckerApp
  * ==========================================================
  *
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Use Case 2: Hardcoded Palindrome Validation
  *
  * Description:
- * Validates a palindrome using a Deque (Double Ended Queue).
- * Characters are inserted into the deque and compared by
- * removing elements from both front and rear.
+ * This class demonstrates basic palindrome validation
+ * using a hardcoded string value.
+ *
+ * At this stage, the application:
+ * - Stores a predefined string
+ * - Compares characters from both ends
+ * - Determines whether the string is a palindrome
+ * - Displays the result on the console
+ *
+ * This use case introduces fundamental comparison logic.
  *
  * @author Developer
- * @version 7.0
+ * @version 2.0
  */
-
-import java.util.Deque;
-import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point for UC2.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
 
-        // Define input string
-        String input = "refer";
+        // Hardcoded string
+        String input = "madam";
 
-        // Create Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
+        System.out.println("Palindrome Checker App - UC2");
+        System.out.println("Checking string: " + input);
 
-        // Add each character to the deque
-        for (char c : input.toCharArray()) {
-            deque.addLast(c);
-        }
-
-        // Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // Continue comparison while more than one element exists
-        while (deque.size() > 1) {
+        // Loop only till half of the string length
+        for (int i = 0; i < input.length() / 2; i++) {
 
-            char first = deque.removeFirst();
-            char last = deque.removeLast();
-
-            if (first != last) {
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
                 isPalindrome = false;
                 break;
             }
         }
 
         // Display result
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        if (isPalindrome) {
+            System.out.println("Result: The string is a Palindrome.");
+        } else {
+            System.out.println("Result: The string is NOT a Palindrome.");
+        }
     }
 }
