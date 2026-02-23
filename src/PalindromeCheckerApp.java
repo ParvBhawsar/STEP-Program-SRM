@@ -3,58 +3,47 @@
  * MAIN CLASS - PalindromeCheckerApp
  * ==========================================================
  *
- * Use Case 9: Recursive Palindrome Checker
+ * Use Case 10: Normalized Palindrome Validation
  *
  * Description:
- * This class validates a palindrome using recursion.
+ * This class validates a palindrome after preprocessing
+ * the input string.
  *
- * Characters are compared from the outer positions
- * moving inward using recursive calls.
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
  *
- * The recursion stops when:
- * - All characters are matched, or
- * - A mismatch is found.
- *
- * This use case demonstrates divide-and-conquer
- * logic using method recursion.
+ * Example:
+ * "A man a plan a canal Panama"
  *
  * @author Developer
- * @version 9.0
+ * @version 10.0
  */
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        // Original input
+        String input = "A man a plan a canal Panama";
 
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+        // Normalize: remove non-alphanumeric characters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
+        boolean isPalindrome = true;
+
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
-    }
-
-    /**
-     * Recursively checks whether a string is palindrome.
-     *
-     * @param s     Input string
-     * @param start Starting index
-     * @param end   Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
-
-        // Base condition: pointers crossed or same position
-        if (start >= end) {
-            return true;
-        }
-
-        // If mismatch found
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call moving inward
-        return check(s, start + 1, end - 1);
     }
 }
