@@ -22,7 +22,7 @@
  * @version 1.0
  */
 
-public class UseCase1PalindromeCheckerApp {
+public class UseCasePalindromeCheckerApp {
 
     /**
      * Application entry point.
@@ -33,18 +33,28 @@ public class UseCase1PalindromeCheckerApp {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
+        // Hardcoded string
+        String input = "madam";
 
-        // Display welcome message
-        System.out.println("=======================================");
-        System.out.println("   Welcome to Palindrome Checker App   ");
-        System.out.println("=======================================");
+        System.out.println("Palindrome Checker App - UC2");
+        System.out.println("Checking string: " + input);
 
-        // Display application details
-        System.out.println("Application Name : Palindrome Checker");
-        System.out.println("Version          : 1.0");
+        boolean isPalindrome = true;
 
-        System.out.println("---------------------------------------");
-        System.out.println("Application started successfully!");
-        System.out.println("Ready for next use case...");
+        // Loop only till half of the string length
+        for (int i = 0; i < input.length() / 2; i++) {
+
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
+        if (isPalindrome) {
+            System.out.println("Result: The string is a Palindrome.");
+        } else {
+            System.out.println("Result: The string is NOT a Palindrome.");
+        }
     }
 }
