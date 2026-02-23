@@ -3,40 +3,48 @@
  * MAIN CLASS - PalindromeCheckerApp
  * ==========================================================
  *
- * Use Case 3: Reverse String Based Palindrome Check
+ * Use Case 4: Character Array Based Validation
  *
  * Description:
- * Checks whether a string is a palindrome
- * by reversing it and comparing with original.
+ * Validates a palindrome by converting the string
+ * into a character array and comparing characters
+ * using the two-pointer technique.
  *
  * @author Developer
- * @version 3.0
+ * @version 4.0
  */
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Hardcoded string
-        String input = "madam";
+        // Declare and initialize the input string
+        String input = "radar";
 
-        System.out.println("Palindrome Checker App - UC3");
-        System.out.println("Original String: " + input);
+        // Convert string into character array
+        char[] chars = input.toCharArray();
 
-        String reversed = "";
+        // Initialize pointers
+        int start = 0;
+        int end = chars.length - 1;
 
-        // Iterate from last character to first
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+
+        // Continue comparison until pointers cross
+        while (start < end) {
+
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
-        System.out.println("Reversed String: " + reversed);
-
-        // Compare original and reversed string
-        if (input.equals(reversed)) {
-            System.out.println("Result: The string is a Palindrome.");
-        } else {
-            System.out.println("Result: The string is NOT a Palindrome.");
-        }
+        // Display result
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
