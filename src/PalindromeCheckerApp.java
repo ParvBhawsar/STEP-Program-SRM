@@ -3,37 +3,33 @@
  * MAIN CLASS - PalindromeCheckerApp
  * ==========================================================
  *
- * Use Case 11: Object-Oriented Palindrome Service
+ * Use Case 12: Strategy Pattern for Palindrome Algorithms
  *
  * Description:
- * This class demonstrates palindrome validation
- * using object-oriented design.
+ * Demonstrates dynamic selection of palindrome
+ * validation algorithms using the Strategy Pattern.
  *
- * The palindrome logic is encapsulated inside
- * a PalindromeService class.
+ * This use case:
+ * - Defines a PalindromeStrategy interface
+ * - Implements a Stack-based strategy
+ * - Injects the strategy at runtime
  *
- * This improves:
- * - Reusability
- * - Readability
- * - Separation of concerns
+ * Focus: Algorithm interchangeability.
  *
  * @author Developer
- * @version 11.0
+ * @version 12.0
  */
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UC11.
-     */
     public static void main(String[] args) {
 
-        String input = "racecar";
+        String input = "level";
 
-        // Create service object
-        PalindromeService service = new PalindromeService();
+        // Inject strategy at runtime
+        PalindromeStrategy strategy = new StackStrategy();
 
-        boolean result = service.checkPalindrome(input);
+        boolean result = strategy.check(input);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
@@ -41,30 +37,38 @@ public class PalindromeCheckerApp {
 }
 
 /**
- * Service class that contains palindrome logic.
+ * ==========================================================
+ * INTERFACE - PalindromeStrategy
+ * ==========================================================
+ * Defines a contract for palindrome algorithms.
  */
-class PalindromeService {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-    /**
-     * Checks whether the input string is a palindrome.
-     *
-     * @param input Input string
-     * @return true if palindrome, false otherwise
-     */
-    public boolean checkPalindrome(String input) {
+/**
+ * ==========================================================
+ * CLASS - StackStrategy
+ * ==========================================================
+ * Stack-based implementation of palindrome check.
+ */
+class StackStrategy implements PalindromeStrategy {
 
-        int start = 0;
-        int end = input.length() - 1;
+    @Override
+    public boolean check(String input) {
 
-        // Compare characters moving inward
-        while (start < end) {
+        java.util.Stack<Character> stack = new java.util.Stack<>();
 
-            if (input.charAt(start) != input.charAt(end)) {
+        // Push characters to stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Compare by popping
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
-
-            start++;
-            end--;
         }
 
         return true;
