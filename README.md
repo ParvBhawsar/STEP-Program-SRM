@@ -2,11 +2,6 @@
 
 This repository contains assignments and projects completed as part of the STEP Program at SRM University.
 
-## Projects
-
-### Palindrome Checker App
-A Java application that checks whether a string is a palindrome.
-
 ## Weekly Assignments
 
 ### Weekly Assignment 1 - Hash Table Applications
